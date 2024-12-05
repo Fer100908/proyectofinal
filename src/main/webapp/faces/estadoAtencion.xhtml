@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"          
+      xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <title>Estados Atención</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <ui:include src="/faces/navbarAdmin.xhtml" />
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h:panelGrid id="panel" columns="2">
+                <h:inputHidden id="txtId" value="#{estadoAtencionBean.txtId}" />
+                <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre:" />
+                <p:inputText id="txtNombre" value="#{estadoAtencionBean.txtNombre}" />
+                <p:commandButton id="btnGuardar" value="Guardar" action="#{estadoAtencionBean.guardar}" update=":form, :form:tabla" />
+            </h:panelGrid>
+
+            <p:dataTable id="tabla" value="#{estadoAtencionBean.lista}" var="estadoAtencion" 
+                         style="width:50%;" paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,15" 
+                         rowKey="#{estadoAtencion.idEstadoAtencion}" 
+                         selectionMode="single"
+                         resizableColumns="true"
+                         rowStyleClass="custom-row-height">
+                
+                <!-- Columna para nombre -->
+                <p:column headerText="Nombre" style="width:60%">
+                    <h:outputText value="#{estadoAtencion.nombreEstadoTicket}" />
+                </p:column>
+
+                <!-- Columna para modificar -->
+                <p:column headerText="Modificar" style="width:20%">
+                    <p:commandButton value="Modificar" 
+                                     action="#{estadoAtencionBean.editar(estadoAtencion.idEstadoAtencion, estadoAtencion.nombreEstadoTicket)}" 
+                                     update=":form:panel" />
+                </p:column>
+
+                <!-- Columna para eliminar -->
+                <p:column headerText="Eliminar" style="width:20%">
+                    <p:commandButton value="Eliminar" 
+                                     action="#{estadoAtencionBean.eliminar(estadoAtencion.idEstadoAtencion)}" 
+                                     update=":form:tabla" />
+                </p:column>
+            </p:dataTable>                                    
+        </h:form>
+    </h:body>    
+</html>

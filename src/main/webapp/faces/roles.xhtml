@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"          
+      xmlns:ui="jakarta.faces.facelets"
+      >
+    <h:head>
+        <title>Usuarios</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <ui:include src="/faces/navbarAdmin.xhtml" />
+    </h:head>
+    <div class="container">
+        <h:body>
+            <h:form id="form">
+                <h:panelGrid id="panel">
+                    <p:outputLabel id="lblId" for="txtId" value=""/>
+                    <h:inputHidden id="txtId" value="#{rolUsuarioBean.txtId}"/>
+                    <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre"/>
+                    <p:inputText id="txtNombre" value="#{rolUsuarioBean.txtNombre}"/>
+                    <p:outputLabel id="lblGuardar" for="btnGuardar" value=""/>
+                    <p:commandButton id="btnGuardar" value="Guardar" action="#{rolUsuarioBean.guardar}" update=":form"/>
+                </h:panelGrid>
+                <p:dataTable id="tabla" value="#{rolUsuarioBean.lista}" var="rolUsuario" 
+                             paginator="true" rows="10" 
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,15" 
+                             rowKey="#{rolUsuario.idRol}" 
+                             selectionMode="single"
+                             resizableColumns="true"
+                             rowStyleClass="custom-row-height">
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{rolUsuario.nombreRolUsuario}" />
+                    </p:column>
+
+                    <p:column headerText="" >
+                        <p:commandButton value="Modificar" action="#{rolUsuarioBean.editar(rolUsuario.idRol,rolUsuario.nombreRolUsuario)}" update=":form:panel"/>
+                    </p:column>
+
+                    <p:column headerText="">
+                        <p:commandButton value="Eliminar" action="#{rolUsuarioBean.eliminar(rolUsuario.idRol)}" update=":form:tabla"/>
+                    </p:column>
+                </p:dataTable>                                    
+            </h:form>
+        </h:body>
+    </div>
+</html>

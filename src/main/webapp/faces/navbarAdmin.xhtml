@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:h="jakarta.faces.html">
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">123digit @i</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <h:link value="Dashboard" outcome="dashboard" styleClass="dropdown-item" />
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRegistros" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Registros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownRegistros">
+                                <li><h:link value="Registrar estados de atención" outcome="estadoAtencion" styleClass="dropdown-item" /></li>
+                                <li><h:link value="Registrar especialidades" outcome="especialidades" styleClass="dropdown-item" /></li>
+                                <li><h:link value="Registrar roles" outcome="roles" styleClass="dropdown-item" /></li>
+                                <li><h:link value="Tipo Documento" outcome="tipoDocumento" styleClass="dropdown-item" /></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRegistros" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuarios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownRegistros">
+                                <li><h:link value="Agregar Usuario" outcome="registrarUsuario" styleClass="dropdown-item" /></li>
+                                <li><h:link value="Usuarios" outcome="usuarios" styleClass="dropdown-item" /></li>
+                                <li><h:link value="Perfil" outcome="perfil" styleClass="dropdown-item" /></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </h:body>
+</html>

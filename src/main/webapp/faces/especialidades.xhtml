@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <title>Especialidades</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+    <!-- Inclusión del Navbar -->
+    <ui:include src="/faces/navbarAdmin.xhtml" />
+    <div class="container">
+        <h:body>
+            <h:form id="form">
+                <h:panelGrid id="panel" columns="2">
+                    <h:inputHidden id="txtId" value="#{especialidadesBean.txtId}" />
+                    <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre:" />
+                    <p:inputText id="txtNombre" value="#{especialidadesBean.txtNombre}" />
+                    <p:commandButton id="btnGuardar" value="Guardar" action="#{especialidadesBean.guardar}" update=":form, :form:tabla" />
+                </h:panelGrid>
+
+                <p:dataTable id="tabla" value="#{especialidadesBean.lista}" var="especialidad" 
+                             paginator="true" rows="10" 
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,15" 
+                             rowKey="#{especialidad.idEspecialidad}" 
+                             selectionMode="single"
+                             resizableColumns="true"
+                             rowStyleClass="custom-row-height">
+
+                    <!-- Columna para nombre -->
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{especialidad.nombreEspecialidad}" />
+                    </p:column>
+
+                    <!-- Columna para modificar -->
+                    <p:column headerText="Modificar">
+                        <p:commandButton value="Modificar" 
+                                         action="#{especialidadesBean.editar(especialidad.idEspecialidad, especialidad.nombreEspecialidad)}" 
+                                         update=":form:panel" />
+                    </p:column>
+
+                    <!-- Columna para eliminar -->
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" 
+                                         action="#{especialidadesBean.eliminar(especialidad.idEspecialidad)}" 
+                                         update=":form:tabla" />
+                    </p:column>
+                </p:dataTable>                                    
+            </h:form>
+        </h:body>
+    </div>   
+</html>

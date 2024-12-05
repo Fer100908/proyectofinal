@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Tipo Documento</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h:panelGrid id="panel" columns="2">
+                <p:outputLabel id="lblId" for="txtId" value=""/>
+                <h:inputHidden id="txtId" value="#{tipoDocumentoBean.txtId}"/>
+                <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre"/>
+                <p:inputText id="txtNombre" value="#{tipoDocumentoBean.txtNombre}"/>
+                <p:outputLabel id="lblGuardar" for="btnGuardar" value=""/>
+                <p:commandButton id="btnGuardar" value="Guardar" action="#{tipoDocumentoBean.guardar}" update=":form"/>
+            </h:panelGrid>
+            <p:dataTable id="tabla" value="#{tipoDocumentoBean.lista}" var="tipoDocumento" 
+                         style="width:50%;" paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,15" 
+                         rowKey="#{tipoDocumento.idTipoDocumento}" 
+                         selectionMode="single"
+                         resizableColumns="true"
+                         rowStyleClass="custom-row-height">
+
+                <p:column headerText="Nombre" style="width:60%">
+                    <h:outputText value="#{tipoDocumento.nombreTipoDocumento}" />
+                </p:column>
+
+                <p:column headerText="..."  style="width:20%">
+                    <p:commandButton value="Modificar" action="#{tipoDocumentoBean.editar(tipoDocumento.idTipoDocumento,tipoDocumento.nombreTipoDocumento)}" update=":form:panel"/>
+                </p:column>
+
+                <p:column headerText="..."  style="width:20%">
+                    <p:commandButton value="Eliminar" action="#{tipoDocumentoBean.eliminar(tipoDocumento.idTipoDocumento)}" update=":form:tabla"/>
+                </p:column>
+            </p:dataTable>                                    
+        </h:form>
+    </h:body>    
+</html>

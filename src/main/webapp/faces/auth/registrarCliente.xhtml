@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"          
+      xmlns:ui="jakarta.faces.facelets"
+      >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>    
+        <title>Registrar</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+        <script src="https://kit.fontawesome.com/8622076d3d.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/faces/styleLogin.css"/>
+    </head>
+
+    <body class="contenidoLogin" style="background-image: url('/faces/background-login.jpg');">
+        <main class="contenedor">
+            <div class="containerLogin">
+                <div class="nameApp">
+                    <h2>123digit @i</h2>
+                </div>
+                <form method="post" action="dashboard">                   
+                    <p:outputLabel id="lblTipoDocumento" for="txtIdTipoDocumento" value="Selecciona tipo documento"/>
+                    <p:selectOneMenu id="txtIdTipoDocumento" value="#{usuarioBean.txtIdTipoDocumento}">
+                        <f:selectItem itemLabel="Seleccione un rol" itemValue="" />
+                        <f:selectItems value="#{tipoDocumentoBean.lista}" var="tipoDocumento"
+                                       itemLabel="#{tipoDocumento.nombreTipoDocumento}" itemValue="#{tipoDocumento.idTipoDocumento}" />
+                    </p:selectOneMenu>  
+                    <div class="inputContainer containerUser">
+                        <input required="required" name="correo" id="user" class="inputField" placeholder="Usuario" type="text"/>
+                        <label class="usernameLabel" for="user">Nro Documento</label>
+                    </div>  
+                    <div class="inputContainer containerUser">
+                        <input required="required" name="correo" id="user" class="inputField" placeholder="Usuario" type="text"/>
+                        <label class="usernameLabel" for="user">Nombre/Razon Social</label>
+                    </div>  
+                    <div class="inputContainer containerUser">
+                        <input required="required" name="correo" id="user" class="inputField" placeholder="Usuario" type="text"/>
+                        <label class="usernameLabel" for="user">Apellido Paterno</label>
+                    </div>  
+                    <div class="inputContainer containerUser">
+                        <input required="required" name="correo" id="user" class="inputField" placeholder="Usuario" type="text"/>
+                        <label class="usernameLabel" for="user">Apellido Materno</label>
+                    </div>  
+                    <div class="inputContainer containerUser">
+                        <input required="required" name="correo" id="user" class="inputField" placeholder="Usuario" type="email"/>
+                        <label class="usernameLabel" for="user">Correo</label>
+                    </div>
+                    <div class="inputContainer containerPass">                    
+                        <input required="required" name="password" id="password" class="inputField" placeholder="Contraseña" type="password"/>
+                        <label class="usernameLabel" for="password">Contraseña</label>
+                    </div>
+                    <div class="inputContainer containerPass">                    
+                        <input required="required" name="password" id="password" class="inputField" placeholder="Contraseña" type="password"/>
+                        <label class="usernameLabel" for="password">Confirmar Contraseña</label>
+                    </div>
+                    <div class="containerBtn">
+                        <input name="btningresar" type="submit" class="button-78" value="Iniciar Sesión"/>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+
+</html>
